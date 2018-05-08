@@ -50,6 +50,12 @@ namespace Colecciones
             IncrementarPrecio(productos, 5);
             ListarProductos(productos);
 
+            // Diccionario
+            var d = new Dictionary<string, Producto>();
+            d.Add(p1.Codigo, p1);
+            d.Add(p2.Codigo, p2);
+            d.Add(p3.Codigo, p3);
+
             
 
             
