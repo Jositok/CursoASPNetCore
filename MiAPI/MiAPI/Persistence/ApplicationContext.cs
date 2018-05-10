@@ -9,8 +9,9 @@ namespace MiAPI.Persistence
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<TodoList> TodoList { get; set; }
-        public DbSet<TodoItem> TodoItem { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
+
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
     
