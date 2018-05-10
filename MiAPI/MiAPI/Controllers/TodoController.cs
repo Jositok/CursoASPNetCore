@@ -13,7 +13,8 @@ namespace MiAPI.Controllers
     [Route("api/Todo")]
     public class TodoController : Controller
     {
-        FakeTodoServices _service;
+        
+        ITodoService _service;
         public TodoController()
         {
             _service = new FakeTodoServices();

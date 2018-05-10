@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace MiAPI.Services
 {
-    public class FakeTodoServices
+
+    public interface ITodoService
+    {
+        IList<TodoList> GetTodoList();
+        IList<TodoList> GetTodoLists();
+    }
+
+    public class FakeTodoServices : ITodoService
     {
         public FakeTodoServices()
         {
 
+        }
+
+        public IList<TodoList> GetTodoList()
+        {
+            throw new NotImplementedException();
         }
 
         public IList<TodoList> GetTodoLists()
