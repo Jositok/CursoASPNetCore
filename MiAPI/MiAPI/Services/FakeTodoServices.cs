@@ -1,21 +1,16 @@
 ﻿using MiAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MiAPI.Services
 {
-
-    public class FakeTodoServices : ITodoService
+    public class FakeTodoServices
     {
         public FakeTodoServices()
         {
 
-        }
-
-        public TodoList GetTodoList(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public IList<TodoList> GetTodoLists()

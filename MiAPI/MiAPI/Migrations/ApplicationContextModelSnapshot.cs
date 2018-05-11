@@ -22,7 +22,7 @@ namespace MiAPI.Migrations
 
             modelBuilder.Entity("MiAPI.Models.TodoItem", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
@@ -31,11 +31,11 @@ namespace MiAPI.Migrations
 
                     b.Property<int>("TodoListId");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("TodoListId");
 
-                    b.ToTable("TodoItem");
+                    b.ToTable("TodoItems");
                 });
 
             modelBuilder.Entity("MiAPI.Models.TodoList", b =>
@@ -49,7 +49,7 @@ namespace MiAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoList");
+                    b.ToTable("TodoLists");
                 });
 
             modelBuilder.Entity("MiAPI.Models.TodoItem", b =>

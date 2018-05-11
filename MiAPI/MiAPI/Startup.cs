@@ -26,19 +26,20 @@ namespace MiAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Configuración de los servicios que utilizará mi aplicación
+            // Configuración de los servicios que utilizará mi aplicación.
             services.AddDbContext<ApplicationContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                    options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
 
-            services.AddTransient<ITodoService, FakeTodoServices>();
+            services.AddTransient<ITodoService, TodoService>();
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // COnfiguración del Pipelinde ASP Net Core
+            // Configuración del Pipeline de ASP NET Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -7,5 +7,10 @@ namespace MiAPI.Services
     {
         IList<TodoList> GetTodoLists();
         TodoList GetTodoList(int id);
+        bool ExistList(int id);
+
+        int CreateList(TodoList list);
+        void UpdateList(TodoList list);
+        void DeleteList(int id);
     }
 }

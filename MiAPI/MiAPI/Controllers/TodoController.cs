@@ -13,11 +13,11 @@ namespace MiAPI.Controllers
     [Route("api/Todo")]
     public class TodoController : Controller
     {
-        
         ITodoService _service;
-        public TodoController()
+
+        public TodoController(ITodoService service)
         {
-            _service = new FakeTodoServices();
+            _service = service;
         }
 
         [HttpGet]
@@ -26,10 +26,60 @@ namespace MiAPI.Controllers
             return _service.GetTodoLists();
         }
 
-        public TodoList GetList(int id)
+        [HttpGet("{id:int}")]
+        public IActionResult GetList(int id)
         {
-           return _service.GetTodoList(id);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_service.ExistList(id))
+                return NotFound(new { info = "No existe ninguna lista con el id especificado" });
+
+            var result = _service.GetTodoList(id);
+            return Ok(result);
         }
-            
+
+
+        [HttpPost]
+        public IActionResult PostTodoList([FromBody]TodoList list)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            int createdId;
+            try
+            {
+                createdId = _service.CreateList(list);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return CreatedAtAction("PostTodoList", new { id = createdId }, list);
+        }
+        [HttpPut("{id:int}")]
+        public IActionResult PutTodoList(int id, [FromBody]TodoList list)
+        {
+            if (!ModelState.IsValid || id<=0)
+                return BadRequest(ModelState);
+
+            _service.UpdateList(list);
+
+            return NoContent();
+        }
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteTodoList(int id)
+        {
+            if (id <= 0)
+                return BadRequest();
+
+            if (!_service.ExistList(id))
+                return NotFound(new { info = "No existe ninguna lista con el id especificado" });
+
+            _service.DeleteList(id);
+
+            return Ok();
+        }
     }
 }
